@@ -12,7 +12,7 @@ docker-build:
 	docker build -t $(NAME):$(TAG) --rm .
 
 shell:
-	docker run -it --rm -p 4000:4000 $(NAME):$(TAG) $(SHELL)
+	docker run -it --rm -p 4000:4000 --entrypoint=$(SHELL) $(NAME):$(TAG) 
 
 build-shell: build shell
 

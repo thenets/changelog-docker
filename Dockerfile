@@ -26,4 +26,5 @@ RUN mix local.hex --force && \
     mix local.rebar --force && \
     mix compile
 
-CMD ["iex"]
+ADD ./entrypoint.sh /entrypoint.sh
+ENTRYPOINT [ "/entrypoint.sh" ]
