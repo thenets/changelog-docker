@@ -1,0 +1,3 @@
+#!/bin/bash -e
+
+uglifyjs assets/embedder.js --mangle --compress | sed "s/\"/'/g"

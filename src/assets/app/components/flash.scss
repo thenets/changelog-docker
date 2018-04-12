@@ -1,0 +1,76 @@
+$flash_types: (success #d4ffd4) (error #ffd5d1);
+
+.flash {
+  background: rgba($light-blue, 0.975);
+  color: $blue;
+  font-size: 0.875em;
+  font-weight: bold;
+  padding: 0.5em 1em;
+  text-align: center;
+
+  .flash-close { path { stroke: $blue; } }
+
+  &--inline {
+    margin-bottom: $base-spacing;
+  }
+
+  // Themes
+  $types:
+    (success, rgba($light-green, 0.975), darken($green, 10%)),
+    (error, rgba($red, 0.975), $white)
+  ;
+  @each $type, $bg, $text in $types {
+    &--#{$type} {
+      background: $bg;
+      color: $text;
+      a {
+        color: $text;
+        text-decoration: underline;
+      }
+      .flash-close {
+        path { stroke: $text; }
+      }
+    }
+  }
+
+  &-message { padding-top: 1px; }
+  p:last-child { margin-bottom: 0; }
+
+  // NOTE: Flashes inside the container work differently than flashes throughout a document
+  &_container {
+    text-align: center;
+    transition: all 0.05s ease-in-out;
+    padding: 0 $mobile-spacing;
+
+    &.is-closing {
+      pointer-events: none;
+      opacity: 0;
+      transform: scale(0.95);
+      transform-origin: top;
+    }
+
+    .flash {
+      border-radius: 0 0 3px 3px;
+      max-width: 100%;
+      width: 440px;
+      display: inline-flex;
+      position: relative;
+
+      &-message {
+        flex: 1 auto;
+        text-align: left;
+      }
+
+      &-close {
+        $size: 10px;
+        padding-left: 0.75em;
+
+        svg {
+          display: block;
+          height: $size;
+          width: $size;
+        }
+      }
+    }
+  }
+}

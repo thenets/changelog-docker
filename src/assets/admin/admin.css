@@ -1,0 +1,80 @@
+.ui.text.container {
+  max-width: 650px !important;
+}
+
+.ui.horizontal.selection.list .item .label {
+  margin-bottom: 1em;
+}
+
+.field-action {
+  float: right;
+}
+
+.emphasis {
+  font-weight: bold;
+}
+
+.ui.sponsor.header, .ui.link.header {
+  margin-bottom: 10px !important;
+}
+
+.ui.header a {
+  color: black;
+}
+.ui.header a:hover {
+  text-decoration: underline;
+}
+
+.ui.header a.view {
+  float: right;
+  font-size: 1.5rem;
+}
+
+.js-image-options {
+  overflow-y: auto;
+  white-space: nowrap;
+  img {
+    margin: 10px !important;
+    cursor: pointer;
+  }
+  .selected {
+    border: 3px solid blue;
+  }
+}
+
+input[type=file] {
+  height: 38px;
+}
+
+@-webkit-keyframes success {
+  0% { background-color: #E5F9E7; }
+  100% { background-color: white; }
+}
+
+@-webkit-keyframes failure {
+  0% { background-color: #FFE8E6; }
+  100% { background-color: white; }
+}
+.ui.menu.success {
+  -webkit-animation-name: success;
+  -webkit-animation-duration: 3000ms;
+  -webkit-animation-iteration-count: 1;
+}
+
+.ui.menu.failure {
+  -webkit-animation-name: failure;
+  -webkit-animation-duration: 3000ms;
+  -webkit-animation-iteration-count: 1;
+}
+
+.ui.table tr.disabled td, .ui.table tr td.disabled, .ui.table tr.disabled:hover, .ui.table tr:hover td.disabled {
+    pointer-events: auto !important;
+}
+
+.actions.right {
+  text-align: right;
+}
+
+.hidden.field {
+  display: none;
+}

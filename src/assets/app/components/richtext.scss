@@ -1,0 +1,343 @@
+.richtext {
+
+  // Remove bottom-margin on last element in richtext
+  > *:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  //
+  //
+  // Headings
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.5em;
+    margin-top: 1.375em;
+    margin-bottom: .75em;
+
+    &:first-child { margin-top: 0; }
+
+    a { font-weight: 900; }
+  }
+
+  h1 {
+    font-size: 1.75em;
+    margin-bottom: 1.25em;
+    @include breakpoint(tiny) { font-size: 2em; }
+    @include breakpoint(tablet) {font-size: 2.25em; }
+  }
+  h2 {
+    font-size: 1.625em;
+    margin-top: 2em;
+    @include breakpoint(tiny) { font-size: 1.75em; }
+    @include breakpoint(tablet) { font-size: 2em; }
+  }
+  h3 {
+    font-size: 1.25em;
+    margin-top: 1.8em;
+    @include breakpoint(tiny) { font-size: 1.375em; }
+    @include breakpoint(tablet) { font-size: 1.5em; }
+  }
+  h4 {
+    font-size: 1.125em;
+    @include breakpoint(tiny) { font-size: 1.25em; }
+    @include breakpoint(tablet) { font-size: 1.375em; }
+  }
+  h5 {
+    font-size: 1em;
+    @include breakpoint(tiny) { font-size: 1.125em; }
+    @include breakpoint(tablet) { font-size: 1.25em; }
+  }
+  h6 {
+    font-size: .875em;
+    @include breakpoint(tiny) { font-size: 1em; }
+    @include breakpoint(tablet) { font-size: 1.125em; }
+  }
+
+  &--small {
+    h1 {
+      font-size: 1.675em;
+      @include breakpoint(tiny) { font-size: 1.75em; }
+      @include breakpoint(tablet) {font-size: 2em; }
+    }
+    h2 {
+      font-size: 1.5em;
+      @include breakpoint(tiny) { font-size: 1.675em; }
+      @include breakpoint(tablet) { font-size: 1.875em; }
+    }
+  }
+
+  //
+  //
+  // Text
+  p {
+    font-size: 1em;
+    line-height: 1.65em;
+    @include breakpoint(tiny) { font-size: 1.125em; }
+    @include breakpoint(tablet) { font-size: 1.25em; }
+  }
+
+  p, li {
+    // If a <code> tag is within a <p> or <li> tag show it as a snippet
+    code {
+      background: rgba($black, .06);
+      color: $black;
+      display: inline-block;
+      font-family: $code;
+      font-size: 13px;
+      line-height: 1;
+      padding: .35em .5em;
+    }
+  }
+
+  &--small p { font-size: 1em; }
+
+  pre {
+    background: $black;
+    border-left: 6px solid $green;
+    border-top-right-radius: $base-border-radius;
+    border-bottom-right-radius: $base-border-radius;
+    hyphens: none;
+    min-width: 100%;
+    overflow-x: auto;
+    white-space: pre;
+    word-break: normal;
+    margin-bottom: 1.75em;
+
+    code {
+      color: $white;
+      line-height: 1.75;
+      font-size: 16px;
+      white-space: pre;
+      display: block;
+      overflow-x: scroll;
+      padding: 1em;
+    }
+  }
+
+  strong {
+    color: $black;
+    font-weight: 700;
+  }
+
+  p, li, h1, h2, h3, h4, h5, h6 {
+    a {
+      color: $black;
+      font-weight: 500;
+      border-bottom: 2px solid $light-grey;
+
+      &:hover {
+        border-color: rgba($green, .3);
+        color: $green;
+      }
+
+      &[rel~="footnote"] {
+        border-bottom: none;
+        padding: 0 3px;
+      }
+    }
+  }
+
+  ul {
+    @include list;
+  }
+
+  ol {
+    @include list(ol);
+  }
+
+  &--small {
+    ul,
+    ol {
+      li {
+        font-size: 1em;
+      }
+    }
+  }
+
+  blockquote {
+    border-left: 3px solid $green;
+    // font-size: 1.25em;
+    // line-height: 1em;
+    margin: 1.25rem 0 1.5rem 0;
+    padding: 0 0 0 15px;
+    color: $black;
+
+    p {
+      color: $black;
+    }
+  }
+
+  &--small blockquote { font-size: 1.125em; }
+
+  //
+  //
+  // Special/Layout
+  .button {
+    // @extend %primary-button;
+    color: $white !important;
+    display: inline-block;
+    font-size: 1.325em;
+    margin: 0.5em 0;
+    padding: 0.6em 1.5em 0.45em;
+    text-align: center;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &--small .button { font-size: 1.125em; }
+
+  aside {
+    padding-left: 1rem;
+    border-left: 1px solid $green;
+    color: $black;
+  }
+
+  & > .block {
+    display: block;
+    max-width: 100%;
+  }
+
+  .left,
+  .right {
+    display: inline-block;
+  }
+  .left { float: left; }
+  .right { float: right; }
+
+  hr {
+    border: 2px solid $border-color;
+    clear: both;
+    margin: 40px 0;
+
+    @include breakpoint(tiny) { margin: 45px 0; }
+    @include breakpoint(tablet) { margin: 50px 0; }
+  }
+
+  img {
+    height: auto;
+    width: 100%;
+
+    @media (min-width: $desktop) {
+      margin: $padding-large -10%;
+      width: 120%;
+    }
+  }
+
+  // borders for images in posts
+  .border {
+    &_light-grey { border: 1px solid $light-grey; }
+    &_medium-grey { border: 1px solid $medium-grey; }
+    &_black { border: 1px solid $black; }
+  }
+
+  mark {
+    font-style: normal;
+    padding: 2px 1px;
+    background-color: $light-yellow;
+    color: $body-copy-color;
+    &.grey-background {
+      background-color: $lightest-grey;
+    }
+  }
+
+  .float {
+    margin: auto;
+    width: auto;
+    &--left {
+      float: left;
+      margin: 0 1em 1em 0;
+    }
+    &--right {
+      float: right;
+      margin: 0 0 1em 1em;
+    }
+  }
+
+  .footnotes {
+    font-size: 0.8em;
+    p { margin: 0; }
+  }
+
+  // Wistia margin
+  .wistia_responsive_padding,
+  .wistia_embed {
+    margin: 0 0 1rem;
+  }
+  // Responsive iframes and videos
+  .video-container {
+    @include video_container();
+  }
+
+  .wide-gutter-wrap {
+    height: auto;
+    width: 100%;
+
+    @media (min-width: $desktop) {
+      margin: $padding-large -20%;
+      width: 140%;
+    }
+  }
+
+  table {
+    font-family: $code;
+    font-size: 14px;
+    line-height: 23px;
+    margin: 1.25em 0;
+    width:100%;
+    word-break: normal;
+    word-break: keep-all;
+    border-spacing: 0;
+    border-collapse: collapse;
+    text-align: left;
+    overflow: scroll;
+
+    a {
+      color: $green;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    th {
+      font-weight: 700;
+      background: #000;
+      color: $white;
+    }
+
+    td, th {
+      padding: 8px 14px;
+
+      &:first-child {
+        @include breakpoint(tiny) { width: 50%; }
+      }
+    }
+
+    tr {
+      background-color: $white;
+
+      &.footer {
+        font-weight: 700;
+        background: lighten($green,43%);
+        border-top: 1px solid $green;
+
+        a { font-weight: inherit; }
+      }
+
+      &:nth-child(2n) { background-color: $lightest-grey; }
+    }
+  }
+
+  tfoot {
+
+    tr {
+      border-top: 2px solid darken($lightest-grey,3%);
+    }
+
+    td {
+      font-size: 12px;
+      padding: 10px 14px;
+    }
+  }
+
+}

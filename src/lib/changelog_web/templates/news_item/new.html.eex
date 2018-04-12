@@ -1,0 +1,54 @@
+<div class="page_basic">
+  <h1>Submit News</h1>
+
+<%= unless @current_user do %>
+  <div class="flash flash--inline flash--error">
+    <div class="flash-message"><p>Please <%= link("sign in", to: sign_in_path(@conn, :new)) %> / <%= link("up", to: person_path(@conn, :join)) %> to submit news. Your profile is used for attribution and notification.</p></div>
+  </div>
+<% end %>
+
+  <%= form_for @changeset, news_item_path(@conn, :create), fn f -> %>
+    <div class="form-element_wrap">
+      <div class="form-element <%= error_class(f, :url) %>">
+        <label>URL<span>*</span></label>
+        <%= text_input(f, :url, user_required_options(@current_user, placeholder: "https://example.com", type: "url", required: true)) %>
+        <%= error_message(f, :url) %>
+      </div>
+    </div>
+
+    <div class="form-element_wrap">
+      <div class="form-element <%= error_class(f, :headline) %>">
+        <label>What is it?<span>*</span></label>
+        <%= text_input(f, :headline, user_required_options(@current_user, placeholder: "Article or project title...", required: true)) %>
+        <%= error_message(f, :headline) %>
+      </div>
+    </div>
+
+    <div class="form-element_wrap">
+      <div class="form-element <%= error_class(f, :story) %>">
+        <label>What's interesting about it?</label>
+        <%= textarea(f, :story, user_required_options(@current_user, placeholder: "Proverbial elevator pitch...")) %>
+        <%= error_message(f, :story) %>
+        <p class="form-element-note">Try some Markdown. It *may* work.</p>
+      </div>
+    </div>
+
+    <div class="form-submit">
+      <p class="form-submit-toc"><a href="#guidelines" class="js-toggle_element">View submission guidelines</a></p>
+      <div>
+        <input type="submit" <%= unless(@current_user, do: "disabled") %>>
+        <div class="form_submit_responses"></div>
+      </div>
+    </div>
+  <% end %>
+
+  <div id="guidelines" class="richtext richtext--small is-hidden">
+    <hr>
+    <h3>Submission Guidelines</h3>
+    <p>Submitting your own stuff is encouraged. Submitting other people's stuff is also encouraged.</p>
+    <p>The golden rule: <mark>if your fellow devs will find it interesting, submit it.</mark></p>
+    <p>That being said... we get <em>a lot</em> of submissions. Do your best to convince us why something is newsworthy.</p>
+    <p>You'll be notified via email <em>if and when</em> your submission gets published.</p>
+    <p>Keep it positive. Keep it hacker. 💚</p>
+  </div>
+</div>

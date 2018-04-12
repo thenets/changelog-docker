@@ -1,0 +1,145 @@
+.transcript {
+  font-size: 16px;
+  margin: 20px 0;
+
+  &-item {
+    padding: 1em 0;
+    position: relative;
+
+    .anchor:target + & {
+      font-size: 1.125em;
+
+      &:after {
+        background-color: $highlight;
+        content: "";
+        position: absolute;
+        top: 0;
+        right: -20px;
+        bottom: 0;
+        left: -20px;
+        z-index: -1;
+      }
+
+      .transcript-item-speaker-image {
+        transform: scale(1.25);
+      }
+    }
+
+    //
+    //
+    // Green Line
+    &:before {
+      content: "";
+      border-left: 1px solid $green;
+      bottom: 0;
+      position: absolute;
+      width: 1px;
+      top: 0;
+      left: 18px;
+    }
+
+    // Break styles
+    &--break {
+      padding: 1.25em 0 1em;
+
+      &:before {
+        border-left: 1px dashed $green;
+      }
+    }
+    // set z-index for other elements
+    &-speaker,
+    &-text {
+      position: relative;
+      z-index: 1;
+    }
+
+    //
+    //
+    // Speaker
+    &-speaker {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+
+      &-image {
+        $size: 36px;
+        background: $black center no-repeat;
+        box-shadow: 0 0 24px rgba($black, 0.2);
+        border-radius: $base-border-radius;
+        display: block;
+        height: $size;
+        margin-right: 15px;
+        width: $size;
+
+        &--changelog {
+          background-image: url("/images/brand/changelog-mark-only.svg");
+          background-position: 7px 6px;
+          background-size: auto 23px;
+        }
+      }
+
+      &-name {
+        font-family: $code;
+        font-size: 0.8125em;
+        font-weight: 700;
+        margin: 0;
+        text-transform: uppercase;
+
+        a {
+          color: $black;
+
+          &:hover { text-decoration: underline; }
+        }
+      }
+    }
+
+    //
+    //
+    // Text
+    &-text {
+      padding-left: 52px;
+
+      p {
+        margin: 0 0 1em;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      a {
+        font-weight: 500;
+        &:hover { text-decoration: underline; }
+      }
+    }
+  }
+
+  // Simple styling for break text
+  &-break {
+    font-family: $code;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  &-edit {
+    margin: 0;
+    font-size: 0.875em;
+  }
+}
+
+//
+//
+// Timestamps
+a.timestamp {
+  // background: transparent url("/images/icons/icon-timestamp.svg") 6px center no-repeat;
+  // border-radius: 1em;
+  color: $black;
+  font-family: $code;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 0 1px 0 3px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

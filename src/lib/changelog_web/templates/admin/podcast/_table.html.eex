@@ -1,0 +1,42 @@
+<table class="ui celled striped table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Status</th>
+      <th>Twitter</th>
+      <th>Vanity Domain</th>
+      <th>Episodes</th>
+      <th>Downloads</th>
+      <th>Reach</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <%= for podcast <- @podcasts do %>
+    <tr>
+      <td class="center aligned">
+        <%= link to: admin_podcast_episode_path(@conn, :index, podcast.slug) do %>
+        <h2 class="ui image header">
+          <img src="<%= PodcastView.cover_url(podcast, :small) %>" class="ui image" />
+        </h2>
+        <% end %>
+      </td>
+      <td><%= status_label(podcast) %></td>
+      <td><%= twitter_link(podcast) %></td>
+      <td><%= vanity_link(podcast) %></td>
+      <td><%= episode_count(podcast) %></td>
+      <td><%= download_count(podcast) %></td>
+      <td><%= reach_count(podcast) %></td>
+      <td class="center aligned">
+        <div class="ui small basic buttons">
+          <%= icon_link("eye", to: podcast_path(@conn, :show, podcast.slug)) %>
+          <%= icon_link("edit", to: admin_podcast_path(@conn, :edit, podcast.slug)) %>
+          <%= icon_link("list", to: admin_podcast_episode_path(@conn, :index, podcast.slug)) %>
+          <%= icon_link("add", to: admin_podcast_episode_path(@conn, :new, podcast.slug)) %>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

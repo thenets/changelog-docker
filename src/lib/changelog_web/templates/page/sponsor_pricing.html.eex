@@ -1,0 +1,124 @@
+<%= render(SharedView, "_drift_js.html") %>
+
+<article class="article">
+  <div class="richtext">
+    <h1>Sponsorship Pricing</h1>
+    <p>Do you need help reaching hundreds of thousands of developers about your product?</p>
+
+    <p><a href="mailto:adam@changelog.com">Email adam@changelog.com</a> or call <a href="tel:1-888-974-2454">888-974-CHLG (2454)</a> to get started.</p>
+
+    <hr>
+
+    <p>Advertising with Changelog is effective because our listeners and readers trust us to only promote and endorse brands who represent products and services developers should care about. We've worked hard to gain that trust, and we don't take it lightly.</p>
+
+    <p>We will work closely with you to determine your goals and design a campaign focused on those goals with measurable results. Your success is our success.</p>
+
+    <p>Our listeners and readers are a loyal audience of engineers, hackers, developers, polyglots, backend, frontend, full-stack, operations, designers, and everything in between.</p>
+
+    <p>If you want to reach developers, <em>we can help you</em>.</p>
+
+    <h2>The Changelog (Podcast)</h2>
+
+    <p>A weekly conversation with the hackers, leaders, and innovators of open source.</p>
+
+    <ul>
+      <li>Each episode includes one (1) pre-roll sponsorship and two (2) mid-roll sponsorships</li>
+      <li><mark>$2,000 for the featured pre-roll spot at the top of the show</mark></li>
+      <li><mark>$1,750 for mid-roll spots</mark></li>
+      <li>Four (4) week minimum</li>
+      <li>Reaches an average 25,000 to 40,000 listens per episode</li>
+      <li>Reaches an average 200,000 listens per month, podcast-wide</li>
+      <li>Published weekly</li>
+      <li>Each sponsor gets mentioned in the post-roll of the show</li>
+      <li>Your logo and link will appear on the episode pages of the shows you sponsor</li>
+      <li>Your link will be included in the show notes delivered to podcast clients and RSS feed</li>
+    </ul>
+
+    <h2>Changelog News (Web + Newsletter)</h2>
+
+    <p>A realtime editorialized feed and email covering this week in open source and software development. It's what developers read to keep up.</p>
+
+    <ul>
+      <li><mark>$500 per week with a four (4) week minimum</mark></li>
+      <li>Sponsored stories are promoted on the web and in our weekly newsletter, and run the week of to the weekend (Monday-Sunday)</li>
+      <li>Web - Estimated 1,500 impressions, with an average of 10-20 clicks</li>
+      <li>Newsletter - Estimated 7,500 impressions, with an average of 80-300 clicks</li>
+      <li>Very high engagement &mdash; 54.65% open rate + 52.81% click rate (this is huge).</li>
+      <li>Sponsored stories include a linked heading, 2-3 lines of supporting text with links, pullquotes, etc.</li>
+      <li>We take a native content approach to sponsored stories. Most organizations treat their blog, courses, ebooks, webinars, and other related content as their inbound funnel. We leverage that to share your content with our community and let your marketing funnel do what it was designed to do &mdash; build trust and convert!</li>
+      <li>We handle all the writing for you. We will work closely with you to determine what content to promote and we take it from there.</li>
+    </ul>
+
+    <h5>Availability</h5>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Sponsored Story</th>
+        </tr>
+      </thead>
+      <tbody>
+      <%= for week <- @weeks do %>
+        <tr>
+          <td><%= TimeView.week_start_end(week) %></td>
+          <% slots = NewsSponsorship.available_count(week) %>
+          <%= if slots > 0 do %>
+            <td><a href="mailto:adam@changelog.com?subject=Sponsorship: Changelog News, <%= TimeView.week_start_end(week) %>&body=Please include your business name, website, and a short description of how we can help you in this email. Thank you! All sponsorships require a four (4) week minimum."><%= slots %> available</a></td>
+          <% else %>
+            <td>sold out</td>
+          <% end %>
+        </tr>
+      <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3">
+            To schedule further into the future email <a href="mailto:adam@changelog.com">adam@changelog.com</a> or call <a href="tel:1-888-974-2454">888-974-CHLG (2454)</a>.
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <h2>Go Time</h2>
+
+    <p>A panel of Go experts and special guests discuss the Go programming language, the community, and everything in between.</p>
+
+    <ul>
+      <li>Each episode includes one (1) pre-roll sponsorship and two (2) mid-roll sponsorships</li>
+      <li><mark>$500 for the featured pre-roll spot at the top of the show</mark></li>
+      <li><mark>$450 for mid-roll spots</mark></li>
+      <li>Four (4) week minimum</li>
+      <li>Reaches an average 6,000 to 8,500 listens per episode</li>
+      <li>Reaches an average 35,000 listens per month, podcast-wide</li>
+      <li>Records live and published weekly</li>
+      <li>Each sponsor gets mentioned in the post-roll of the show</li>
+      <li>Your logo and link will appear on the episode pages of the shows you sponsor</li>
+      <li>Your link will be included in the show notes delivered to podcast clients and RSS feed</li>
+    </ul>
+
+    <h2>JS Party</h3>
+
+    <p>A panel of web development experts and special guests discuss the latest in JavaScript and the web platform.</p>
+
+    <ul>
+      <li><mark>$500 for the featured pre-roll spot at the top of the show</mark></li>
+      <li><mark>$450 for mid-roll spots</mark></li>
+      <li>Four (4) week minimum</li>
+      <li>Reaches an average 5,500 to 7,000 listens per episode</li>
+      <li>Reaches an average 30,000 listens per month, podcast-wide</li>
+      <li>Records live and published weekly</li>
+      <li>Each sponsor gets mentioned in the post-roll of the show</li>
+      <li>Your logo and link will appear on the episode pages of the shows you sponsor</li>
+      <li>Your link will be included in the show notes delivered to podcast clients and RSS feed</li>
+    </ul>
+
+    <hr>
+
+    <h2>Conference Sponsorship</h2>
+
+    <p>We love working with conferences! We have several options on how we support and partner with conference organizers.</p>
+
+    <p>We can come in as a media partner to help spread the word and provide the coverage you need, or we can involve <a href="https://changelog.com/films">Changelog Films</a> and help you tell your community's story like we have for our friends at <a href="https://changelog.com/films/gophercon-2015/">GopherCon</a>.</p>
+  </div>
+</article>

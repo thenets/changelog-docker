@@ -1,0 +1,217 @@
+.episode {
+  //
+  //
+  // Header
+  &-header {
+    @include masthead();
+    position: relative;
+
+    // Wrap
+    &-wrap {
+      margin: 0 auto;
+      max-width: 880px;
+      padding-bottom: $base-spacing;
+    }
+
+    &-show_title {
+      font-family: $code;
+      font-size: .70em;
+      font-weight: normal;
+      margin-bottom: 2em;
+
+      &,
+      a {
+        color: $medium-grey;
+      }
+      a:hover {
+        color: $light-grey;
+      }
+
+      @include breakpoint(mobile) {
+        font-size: .80em;
+      }
+    }
+
+    &-title {
+      font-size: 1.5em;
+      line-height: 1.25em;
+      margin-bottom: 15px;
+
+      @include breakpoint(mobile) {
+        font-size: 2em;
+      }
+    }
+
+    &-subtitle {
+      color: $medium-grey;
+      font-size: 1em;
+      font-style: italic;
+      font-weight: normal;
+    }
+
+    // &-guests {}
+
+    &-toolbar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      transform: translateY(50%);
+
+      .toolbar_scroll-wrap {
+        margin: 0 auto;
+      }
+    }
+
+    &-all_episodes_button {
+      @include masthead-back();
+    }
+  }
+
+  //
+  //
+  // Body
+  &-body {
+    // @include wrap;
+    margin: 0 auto;
+    max-width: 940px;
+    padding-bottom: $base-spacing;
+
+    // Summary
+    &-summary {
+      border-bottom: 2px solid $light-grey;
+      margin-bottom: $base-spacing*2;
+      padding: $base-spacing;
+      text-align: center;
+
+      @include breakpoint(mobile) {
+        padding: $base-spacing $base-spacing*2 $base-spacing*2;
+      }
+
+      &-description {
+        text-align: left;
+
+        @include breakpoint(mobile) {
+          font-size: 1.25em;
+        }
+      }
+
+      &-sponsors {
+        margin: 0 0 $base-spacing;
+
+        @include breakpoint(mobile) {
+          margin: 0 0 $base-spacing*2;
+        }
+
+        h3 {
+          font-family: $code;
+          font-size: 13px;
+          font-weight: normal;
+          margin: 0 0 2.5em;
+          text-transform: uppercase;
+        }
+
+        &-list {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+
+          a {
+            display: block;
+            width: 5.75rem;
+            margin: 0 0.5rem;
+
+            @include breakpoint(mobile) {
+              margin: 0 1rem;
+            }
+          }
+
+          img {
+            height: auto;
+            padding: 0;
+            width: 100%;
+          }
+        }
+      }
+
+      &-meta {
+        font-family: $code;
+        font-size: 0.8125em;
+        margin-top: $base-spacing;
+        text-align: left;
+
+        @include breakpoint(640px) {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          text-align: center;
+
+          a:hover { text-decoration: underline; }
+
+          li {
+            padding: 0 4px;
+
+            &:before {
+              content: "\2022";
+              padding-right: 8px;
+            }
+
+            &:first-child {
+              padding-left: 0;
+
+              &:before { display: none; }
+            }
+
+            &:last-child { padding-right: 0; }
+
+            // hide last li if empty, which means and admin isn't logged in
+            &:last-child:empty { display: none; }
+          }
+        }
+
+        &,
+        a {
+          color: $medium-grey;
+        }
+        a:hover { color: $black; }
+      }
+
+      &-tags {
+        margin-top: $base-spacing;
+        text-align: center;
+      }
+    }
+
+    // Sections
+    &-section {
+      margin: $base-spacing;
+
+      @include breakpoint(mobile) {
+        margin: $base-spacing $base-spacing*2 $base-spacing*1.5;
+      }
+
+      &-heading {
+        font-family: $code;
+        font-size: 0.9375em;
+        font-weight: 700;
+        margin-bottom: 2em;
+
+        span {
+          border-bottom: 3px solid $light-grey;
+          padding: 0 0 0.25em;
+        }
+      }
+    }
+
+    // Content
+    &-content {
+      padding: $base-spacing;
+    }
+
+    // Pagination
+    &-pagination {
+      margin: $base-spacing 0;
+      text-align: center;
+    }
+  }
+}

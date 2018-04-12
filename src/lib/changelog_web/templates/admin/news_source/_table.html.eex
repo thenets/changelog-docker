@@ -1,0 +1,34 @@
+<table class="ui celled striped table">
+    <thead>
+      <tr>
+        <th>Source</th>
+        <th>Slug</th>
+        <th>On Twitter</th>
+        <th>Regex</th>
+        <th>Edit Time</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <%= for source <- @sources do %>
+      <tr>
+        <td>
+          <img class="ui avatar image" style="border-radius: 0" src="<%= icon_url(source) %>">
+          <%= link(source.name, to: source.website, rel: "external") %>
+        </td>
+        <td><%= link(source.slug, to: news_source_path(@conn, :show, source.slug)) %></td>
+        <td><%= twitter_link(source) %></td>
+        <td><%= source.regex %></td>
+        <td><%= ts(source.updated_at) %></td>
+        <td class="center aligned">
+          <div class="ui small basic buttons">
+            <%= icon_link "eye", to: news_source_path(@conn, :show, source.slug) %>
+            <%= icon_link "edit", to: admin_news_source_path(@conn, :edit, source) %>
+            <%= icon_link "trash", to: admin_news_source_path(@conn, :delete, source), method: :delete, data: [confirm: "Are you sure?"] %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>

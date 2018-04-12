@@ -1,0 +1,58 @@
+<div class="page_basic">
+  <%= render("_nav.html", conn: @conn) %>
+
+  <%= form_for @changeset, home_path(@conn, :update), [class: "form", multipart: true], fn f -> %>
+    <input type="hidden" name="from" value="account">
+
+    <div class="form-element_wrap">
+      <div class="form-element <%= error_class(f, :email) %>">
+        <label>Email</label>
+        <%= text_input(f, :email) %>
+        <%= error_message(f, :email) %>
+      </div>
+    </div>
+
+    <div class="form-element_wrap form-element_wrap--2">
+      <div class="form-element <%= error_class(f, :github_handle) %>">
+        <label>On GitHub</label>
+        <%= text_input(f, :github_handle, placeholder: "gracehopper", autocapitalize: "none") %>
+        <%= error_message(f, :github_handle) %>
+      </div>
+
+      <div class="form-element <%= error_class(f, :twitter_handle) %>">
+        <label>On Twitter</label>
+        <%= text_input(f, :twitter_handle, placeholder: "gracehopper", autocapitalize: "none") %>
+        <%= error_message(f, :twitter_handle) %>
+      </div>
+    </div>
+
+    <div class="form-checklist">
+      <label>Notification Settings</label>
+      <%= inputs_for f, :settings, fn i -> %>
+        <div class="form-checklist-item <%= error_class(f, :email_on_submitted_news) %>">
+          <label>
+            <%= checkbox(i, :email_on_submitted_news) %>
+            <span class="form-checklist-item-box"></span>
+            <span class="form-checklist-item-text">Email me when something I submit gets featured in Changelog News</span>
+          </label>
+        </div>
+
+        <div class="form-checklist-item <%= error_class(f, :email_on_authored_news) %>">
+          <label>
+            <%= checkbox(i, :email_on_authored_news) %>
+            <span class="form-checklist-item-box"></span>
+            <span class="form-checklist-item-text">Email me when something I authored gets featured in Changelog News</span>
+          </label>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="form-submit">
+      <p class="form-submit-toc"></p>
+      <div>
+        <input type="submit" value="Save">
+        <div class="form_submit_responses"></div>
+      </div>
+    </div>
+  <% end %>
+</div>

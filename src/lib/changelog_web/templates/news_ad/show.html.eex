@@ -1,0 +1,10 @@
+<div class="feed">
+  <article class="news_item" data-news-type="ad" data-news-id="<%= hashid(@ad) %>">
+    <%= render("_header.html", assigns) %>
+    <%= render("_toolbar.html", assigns) %>
+    <div class="news_item-content richtext">
+      <%= @ad.story |> md_to_html |> raw %>
+    </div>
+    <%= image_link(@ad) %>
+  </article>
+</div>

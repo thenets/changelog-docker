@@ -1,0 +1,34 @@
+<article class="article">
+  <div class="richtext">
+    <h1>About</h1>
+
+    <p>Changelog is a digital media company focused on telling developer-focused stories that gets to the heart. We exist to enrich the lives of developers.</p>
+
+    <hr>
+
+    <p>
+      <strong>Adam Stacoviak</strong> &mdash; Adam is the host of Founders Talk, and Founder &amp; Editor-in-chief of Changelog Media. Prior to Changelog (and during, depending on the year) he lead product development for a non-profit called Pure Charity. &mdash; <a href="https://twitter.com/adamstac">@adamstac</a>
+    </p>
+
+    <hr>
+
+    <p>
+      <strong>Jerod Santo</strong> &mdash; Jerod is Managing Editor &amp; Partner of Changelog Media. he helps lead and co-host our flagship podcast, The Changelog, and builds all the cool stuff that makes Changelog awesome. He also runs his custom software company, Object Lateral. &mdash; <a href="https://twitter.com/jerodsanto">@jerodsanto</a>
+    </p>
+
+    <hr>
+
+    <h3>Special thanks to...</h3>
+
+    <p><a href="https://www.fastly.com/?utm_source=changelog&amp;utm_campaign=changelog-partner">Fastly</a> for providing our real-time CDN and worldwide bandwidth.</p>
+
+    <p><a href="https://linode.com/changelog">Linode</a> for providing our high performance SSD Linux cloud servers.</p>
+    
+    <p><a href="https://rollbar.com/">Rollbar</a> for providing real-time error monitoring and alerting.</p>
+
+    <p><a href="https://soundcloud.com/breakmaster-cylinder">Breakmaster Cylinder</a> for working with us to create our awesome beets.</p>
+
+    <p><a href="http://www.oreilly.com/pub/cpc/971">O'Reilly Media</a> for colaborating with us on OSCON and other content projects.</p>
+
+  </div>
+</article>

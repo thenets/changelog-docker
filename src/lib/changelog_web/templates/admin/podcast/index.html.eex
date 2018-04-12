@@ -1,0 +1,34 @@
+<div class="ui basic segment">
+  <h1 class="ui dividing header">
+    Podcasts
+    <div class="sub header">The main thing is the main thing.</div>
+  </h1>
+
+  <div class="actions">
+    <%= link to: admin_podcast_path(@conn, :new), class: "ui right floated primary basic button" do %>
+      <i class="icon unmute"></i>
+      Add Podcast
+    <% end %>
+  </div>
+</div>
+
+<div class="ui basic segment">
+<%= if Enum.any?(@ours) do %>
+  <h2 class="ui header">Our podcasts</h2>
+  <%= render("_table.html", conn: @conn, podcasts: @ours) %>
+<% end %>
+</div>
+
+<div class="ui basic segment">
+<%= if Enum.any?(@partners) do %>
+  <h2 class="ui header">Partner podcasts</h2>
+  <%= render("_table.html", conn: @conn, podcasts: @partners) %>
+<% end %>
+</div>
+
+<div class="ui basic segment">
+<%= if Enum.any?(@retired) do %>
+  <h2 class="ui header">Retired podcasts</h2>
+  <%= render("_table.html", conn: @conn, podcasts: @retired) %>
+<% end %>
+</div>

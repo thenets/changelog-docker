@@ -1,0 +1,81 @@
+<table class="ui celled striped table">
+    <thead>
+      <tr>
+        <th>People</th>
+        <th>Type</th>
+        <th>Headline</th>
+        <th>Topics</th>
+      <%= if @status == :published do %>
+        <th><i class="mouse pointer icon"></i> / <i class="eye icon"></i></th>
+        <th>CTR</th>
+      <% else %>
+        <th>Create Time</th>
+      <% end %>
+      <%= if Enum.member?([:published, :scheduled], @status) do %>
+        <th>Publish Time</th>
+      <% end %>
+        <th></th>
+      </tr>
+    </thead>
+
+  <%= if @status == :queued do %>
+    <tbody class="js-queue" data-csrf="<%= get_csrf_token() %>">
+  <% else %>
+    <tbody>
+  <% end %>
+    <%= for item <- @items do %>
+      <tr data-id="<%= item.id %>">
+        <td class="center aligned">
+        <%= if is_loaded(item.submitter) do %>
+          <%= link to: admin_person_path(@conn, :edit, item.submitter), title: "Submitter: #{item.submitter.name}", data: [popup: true] do %>
+            <img class="ui avatar image" src="<%= PersonView.avatar_url(item.submitter) %>">
+          <% end %>
+        <% end %>
+        <%= if is_loaded(item.logger) do %>
+          <%= link to: admin_person_path(@conn, :edit, item.logger), title: "Logger: #{item.logger.name}", data: [popup: true] do %>
+            <img class="ui avatar image" src="<%= PersonView.avatar_url(item.logger) %>">
+          <% end %>
+        <% end %>
+        <%= if is_loaded(item.author) && @status != :submitted do %>
+          <%= link to: admin_person_path(@conn, :edit, item.author), title: "Author: #{item.author.name}", data: [popup: true] do %>
+            <img class="ui avatar image" src="<%= PersonView.avatar_url(item.author) %>">
+          <% end %>
+        <% end %>
+        </td>
+        <td><%= item.type %></td>
+        <td>
+          <%= if item.image do %><i class="image icon"></i><% end %>
+          <%= link truncate(item.headline, 50), to: item.url %>
+        </td>
+        <td>
+        <%= for topic <- item.topics do %>
+          <%= link "##{topic.slug}", to: admin_topic_path(@conn, :edit, topic.slug) %><br/>
+        <% end %>
+        </td>
+      <%= if @status == :published do %>
+        <td><%= item.click_count %> / <%= item.impression_count %></td>
+        <td><%= ctr(item) %>%</td>
+      <% else %>
+        <td><%= ts(item.inserted_at) %></td>
+      <% end %>
+      <%= if Enum.member?([:published, :scheduled], @status) do %>
+        <td><%= ts(item.published_at) %></td>
+      <% end %>
+        <td class="center aligned">
+          <div class="ui small basic buttons">
+          <%= if @status == :queued do %>
+            <%= icon_link "move", to: admin_news_item_path(@conn, :edit, item) %>
+          <% end %>
+            <%= icon_link "eye", to: show_or_preview_path(@conn, item) %>
+            <%= icon_link "edit", to: admin_news_item_path(@conn, :edit, item) %>
+          <%= if @status == :submitted do %>
+            <%= icon_link "thumbs down", to: admin_news_item_path(@conn, :decline, item), method: :delete, data: [confirm: "Decline this item?"] %>
+          <% else %>
+            <%= icon_link "trash", to: admin_news_item_path(@conn, :delete, item), method: :delete, data: [confirm: "Are you sure?"] %>
+          <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>

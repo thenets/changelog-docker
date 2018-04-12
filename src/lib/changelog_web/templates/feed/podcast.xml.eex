@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:admin="http://webns.net/mvcb/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+  <channel>
+    <title><%= @podcast.name %></title>
+    <copyright>All rights reserved</copyright>
+    <link><%= PodcastView.vanity_domain_with_fallback_url(@podcast) %></link>
+    <atom:link href="<%= podcast_url(@conn, :show, @podcast.slug) %>" rel="alternate" type="application/rss+xml" />
+    <language>en-us</language>
+    <description><%= md_to_text(@podcast.description) %> <%= @podcast.extended_description %></description>
+    <itunes:subtitle><%= @podcast.name %></itunes:subtitle>
+    <itunes:author>Changelog Media</itunes:author>
+    <itunes:summary><%= md_to_text(@podcast.description) %> <%= @podcast.extended_description %></itunes:summary>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:image href="<%= PodcastView.cover_url(@podcast) %>"/>
+    <itunes:keywords><%= @podcast.keywords %></itunes:keywords>
+    <itunes:owner>
+      <itunes:name>Changelog Media</itunes:name>
+      <itunes:email>editors@changelog.com</itunes:email>
+    </itunes:owner>
+    <itunes:category text="Technology">
+      <itunes:category text="Software How-To"/>
+      <itunes:category text="Tech News"/>
+    </itunes:category>
+    <%= for episode <- @episodes do %>
+      <item>
+        <title><%= podcast_title(@podcast, episode) |> html_escape |> safe_to_string %></title>
+        <link><%= episode_url(@conn, :show, episode.podcast.slug, episode.slug) %></link>
+        <guid isPermaLink="false"><%= EpisodeView.guid(episode) %></guid>
+        <pubDate><%= TimeView.rss(episode.published_at) %></pubDate>
+      <%= if Enum.any?(episode.hosts) do %>
+        <dc:creator><%= PersonView.comma_separated_names(episode.hosts) %></dc:creator>
+      <% else %>
+        <dc:creator>Changelog Media</dc:creator>
+      <% end %>
+        <%= render("_episode_description.xml", episode: episode) %>
+        <enclosure url="<%= EpisodeView.audio_url(episode) %>" length="<%= episode.bytes %>" type="audio/mpeg" />
+      <%= if Enum.any?(episode.hosts) do %>
+        <itunes:author><%= PersonView.comma_separated_names(episode.hosts) %></itunes:author>
+      <% else %>
+        <itunes:author>Changelog Media</itunes:author>
+      <% end %>
+        <itunes:image href="<%= PodcastView.cover_url(episode.podcast) %>"/>
+        <itunes:duration><%= TimeView.duration(episode.duration) %></itunes:duration>
+        <itunes:explicit>no</itunes:explicit>
+        <itunes:keywords><%= episode.podcast.keywords %></itunes:keywords>
+        <itunes:subtitle><%= episode.headline |> html_escape |> safe_to_string %></itunes:subtitle>
+        <itunes:summary><%= md_to_text(episode.summary) %></itunes:summary>
+      </item>
+    <% end %>
+  </channel>
+</rss>

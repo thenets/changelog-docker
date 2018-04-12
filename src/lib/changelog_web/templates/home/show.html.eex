@@ -1,0 +1,66 @@
+<div class="page_basic">
+  <%= render("_nav.html", assigns) %>
+
+  <div class="account_subscriptions">
+    <div class="account_subscriptions-item">
+      <div class="account_subscriptions-item-info">
+        <h3>Changelog Weekly</h3>
+        <p>Our editorialized take covering this week in open source and software development.</p>
+        <p class="account_subscriptions-item-info-meta">1 Email Per Week — Delivered on Sundays - <%= link "Archive", to: page_path(@conn, :weekly_archive) %></p>
+      </div>
+      <div class="account_subscriptions-item-button">
+        <%= newsletter_link(Changelog.Newsletters.weekly(), assigns) %>
+      </div>
+    </div>
+    <div class="account_subscriptions-item">
+      <div class="account_subscriptions-item-info">
+        <h3>Changelog Nightly</h3>
+        <p>Our automated, nightly email unearths the hottest new repos on GitHub before they blow up.</p>
+        <p class="account_subscriptions-item-info-meta">7 Emails Per Week — Delivered Daily at 10pm US Central</p>
+      </div>
+      <div class="account_subscriptions-item-button">
+        <%= newsletter_link(Changelog.Newsletters.nightly(), assigns) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="account_ctas">
+    <div class="account_ctas-item">
+      <img class="account_ctas-item-icon" src='<%= static_url(@conn, "/images/brand/changelog-logomark.svg") %>' width="50" height="50" alt="Slack Logomark"></i>
+
+      <div class="account_ctas-item-info">
+        <h3>Changelog.com Profiles</h3>
+        <p>Public profiles are launching soon. Add your info today to reserve your username.</p>
+
+        <div class="account_ctas-item-info-buttons">
+          <%= link "Manage Profile", to: home_path(@conn, :profile) %>
+        </div>
+      </div>
+    </div>
+    <div class="account_ctas-item">
+      <img class="account_ctas-item-icon" src='<%= static_url(@conn, "/images/brand/podcasts.svg") %>' width="50" height="50" alt="Slack Logomark"></i>
+
+      <div class="account_ctas-item-info">
+        <h3>Changelog Podcasts</h3>
+        <p>Prefer not to listen on the web? Subscribe to Changelog podcasts from your app of choice.</p>
+
+        <div class="account_ctas-item-info-buttons">
+          <%= link "Subscribe to Podcasts", to: podcast_path(@conn, :index) %>
+        </div>
+      </div>
+    </div>
+    <div class="account_ctas-item">
+      <img class="account_ctas-item-icon" src='<%= static_url(@conn, "/images/content/community/slack-mark.svg") %>' width="50" height="50" alt="Slack Logomark"></i>
+
+      <div class="account_ctas-item-info">
+        <h3>Changelog Slack</h3>
+        <p>Connect with like-minded developers from all over the world. Hang with us and Slack in realtime during our live shows. Be the first to hear about upcoming shows and projects. This is your all-access pass to everything we do.</p>
+
+        <div class="account_ctas-item-info-buttons">
+          <%= link "Request Invite", to: home_path(@conn, :slack), method: :post %>
+          <%= link "Launch Slack", to: "https://changelog.slack.com", target: "_blank" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

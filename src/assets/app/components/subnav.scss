@@ -1,0 +1,49 @@
+.subnav {
+  margin-bottom: $base-spacing*1.5;
+  position: relative;
+
+  &:before {
+    border-bottom: 1px solid $light-grey;
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+  }
+
+  &-list {
+    display: flex;
+    justify-content: flex-start;
+
+    &-item {
+      flex: 0 auto;
+
+      a {
+        border-bottom: 1px solid transparent;
+        color: $black;
+        display: block;
+        font-size: 0.825em;
+        height: 42px;
+        padding: 0 0.5em 0.5em 0;
+        transform: translateY(1px);
+        transition: border 0.2s $base-easing;
+
+        @include breakpoint(tablet) {
+          font-size: 1em;
+          padding: 0 1em 1em;
+        }
+
+        small {
+          margin: 0;
+          position: relative;
+          top: -1px;
+        }
+      }
+
+      &.is-active a,
+      a:hover {
+        border-bottom-color: $green;
+      }
+    }
+  }
+}

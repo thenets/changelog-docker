@@ -1,0 +1,116 @@
+.show {
+  &--soon {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+
+    .show-header {
+      flex: 1 0 auto;
+      margin-bottom: 0;
+    }
+  }
+  // Header
+  &-header {
+    @include masthead();
+
+    // Artwork
+    &-art {
+      $size: 160px;
+      margin: 0 auto $base-spacing;
+      position: relative;
+
+      // &:after { @include c-hider(); }
+
+      &,
+      img {
+        height: $size;
+        width: $size;
+      }
+
+      @include breakpoint(mobile) {
+        $size: 220px;
+
+        &,
+        img {
+          height: $size;
+          width: $size;
+        }
+      }
+
+      &-status {
+        @include status_label();
+      }
+    }
+
+    // Description
+    &-description {
+      color: $medium-grey;
+      font-size: 1.125em;
+      margin: $base-spacing auto;
+      max-width: 680px;
+
+      p {
+        margin-bottom: 0.5em;
+      }
+    }
+
+    // Sign-up Form (Coming Soon only)
+    .signup-form {
+      margin-bottom: $base-spacing;
+    }
+
+    // Subscribe
+    &-subscribe {
+      margin: 20px 0;
+
+      @mixin subscribe_button() {
+        background: #252B32 8px center no-repeat;
+        background-size: 30px;
+        border: 1px solid #333A42;
+        border-radius: $base-border-radius;
+        color: $white;
+        display: inline-block;
+        font-family: $code;
+        font-size: 15px;
+        padding: 15px 12px 14px;
+        transition: background 0.1s $base-easing;
+
+        &:hover {
+          background-color: #333A42;
+        }
+      }
+
+      &-mobile {
+        @include subscribe_button();
+        width: 100%;
+
+        @include breakpoint(mobile) { display: none; }
+      }
+
+      &-buttons {
+        display: none;
+        font-size: 0;
+        text-align: center;
+
+        @include breakpoint(mobile) { display: block; }
+
+        &-item {
+          @include subscribe_button();
+          margin: 10px;
+          padding: 15px 12px 14px 50px;
+
+          &--apple { background-image: url('/images/icons/podcast_icon-apple.png'); }
+          &--overcast { background-image: url('/images/icons/podcast_icon-overcast.png'); }
+          &--android { background-image: url('/images/icons/podcast_icon-android.png'); }
+          &--rss { background-image: url('/images/icons/podcast_icon-rss.png'); }
+        }
+      }
+    }
+
+    // Hosts
+    &-hosts {
+
+    }
+  }
+}
