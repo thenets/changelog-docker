@@ -20,10 +20,15 @@ config :changelog, Changelog.Repo,
 
 config :changelog, Changelog.Mailer,
   adapter: Bamboo.SMTPAdapter,
-  server: "smtp.api.createsend.com",
-  port: 587,
-  username: {:system, "CM_SMTP_TOKEN"},
-  password: {:system, "CM_SMTP_TOKEN"}
+  server: {:system, "SMTP_SERVER"},
+  hostname: {:system, "SMTP_HOSTNAME"},
+  port: 465,
+  username: {:system, "SMTP_USERNAME"},
+  password: {:system, "SMTP_PASSWORD"},
+  tls: :if_available,
+  allowed_tls_versions: [:"tlsv1", :"tlsv1.1", :"tlsv1.2"],
+  ssl: true,
+  retries: 1
 
 config :changelog, Changelog.Scheduler,
   global: true,

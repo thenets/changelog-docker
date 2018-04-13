@@ -1,13 +1,22 @@
 #!/bin/sh
 
+# ENV
+APP=/app
+
+# Install dependencies
+cd $APP
+
 # Configure database
 # ... I don't know what should I do here...
-cd /home/easyelixir/changelog.com/config
+cd $APP/config
 rm dev.exs test.exs
 ln -s prod.exs dev.exs
 ln -s prod.exs test.exs
 
-# Start server
-cd /home/easyelixir/changelog.com
+# Run database migration
+cd $APP
 mix ecto.migrate
+
+# Start server
+cd $APP
 mix phx.server

@@ -30,3 +30,7 @@ npm-debug.log*
 /priv/uploads
 /import/cookies.yml
 /cover
+
+# Elixir
+.mix
+.hex
